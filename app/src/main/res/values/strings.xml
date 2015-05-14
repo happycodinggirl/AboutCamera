@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CameraPreview</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="front">front</string>
+    <string name="back">back</string>
+
+</resources>
