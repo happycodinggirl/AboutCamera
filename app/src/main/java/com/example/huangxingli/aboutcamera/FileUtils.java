@@ -25,7 +25,7 @@ public class FileUtils {
                 long blockSize=fs.getBlockSize();
                 long available=availableBolocks*blockSize;
                 long dataLength=data.length;
-                Log.v("TAG", "----available is----" + available + "-----dataLength is---" + dataLength);
+                Log.v("TAG", "----available is-ffff---" + available + "-----dataLength is---" + dataLength);
                 if(available<dataLength){
                     Log.v("TAG","----available<data.length----");
                     //空间不足直接返回空
