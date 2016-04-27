@@ -16,5 +16,6 @@ public abstract class BaseActivity extends Activity {
     }
 
     public abstract int getContentRes();
+
     public abstract void initView();
 }

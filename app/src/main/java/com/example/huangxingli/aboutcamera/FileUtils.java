@@ -11,32 +11,32 @@ import java.io.FileOutputStream;
  * Created by huangxingli on 2015/5/14.
  */
 public class FileUtils {
-    public static String  saveToPicture(byte[] data){
-        String path = "/sdcard/"+System.currentTimeMillis()+".jpg";
+    public static String saveToPicture(byte[] data) {
+        String path = "/sdcard/" + System.currentTimeMillis() + ".jpg";
         try {
-            //ÅÐ¶ÏÊÇ·ñ×°ÓÐSD¿¨
-            if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-                //ÅÐ¶ÏSD¿¨ÉÏÊÇ·ñÓÐ×ã¹»µÄ¿Õ¼ä
+            //ï¿½Ð¶ï¿½ï¿½Ç·ï¿½×°ï¿½ï¿½SDï¿½ï¿½
+            if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                //ï¿½Ð¶ï¿½SDï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ã¹»ï¿½Ä¿Õ¼ï¿½
                 String storage = Environment.getExternalStorageDirectory().getAbsolutePath();
                 StatFs fs = new StatFs(storage);
-                //¿ÉÓÃµÄblocksµÄÊýÁ¿
-                long availableBolocks=fs.getAvailableBlocks();
-                //µ¥¸öblockµÄ´óÐ¡
-                long blockSize=fs.getBlockSize();
-                long available=availableBolocks*blockSize;
-                long dataLength=data.length;
+                //ï¿½ï¿½ï¿½Ãµï¿½blocksï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                long availableBolocks = fs.getAvailableBlocks();
+                //ï¿½ï¿½ï¿½ï¿½blockï¿½Ä´ï¿½Ð¡
+                long blockSize = fs.getBlockSize();
+                long available = availableBolocks * blockSize;
+                long dataLength = data.length;
                 Log.v("TAG", "----available is-ffff---" + available + "-----dataLength is---" + dataLength);
-                if(available<dataLength){
-                    Log.v("TAG","----available<data.length----");
-                    //¿Õ¼ä²»×ãÖ±½Ó·µ»Ø¿Õ
+                if (available < dataLength) {
+                    Log.v("TAG", "----available<data.length----");
+                    //ï¿½Õ¼ä²»ï¿½ï¿½Ö±ï¿½Ó·ï¿½ï¿½Ø¿ï¿½
                     return null;
-                }else{
-                    Log.v("TAG","---->>>>>>>>>>---right---");
+                } else {
+                    Log.v("TAG", "---->>>>>>>>>>---right---");
                 }
 
                 File file = new File(path);
-                if(!file.exists())
-                    //´´½¨ÎÄ¼þ
+                if (!file.exists())
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½
                     file.createNewFile();
                 FileOutputStream fos = new FileOutputStream(file);
                 fos.write(data);
@@ -44,7 +44,7 @@ public class FileUtils {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Log.v("TAG","---CATCH EXCEPTION E.MESSAGE IS---"+e.getMessage());
+            Log.v("TAG", "---CATCH EXCEPTION E.MESSAGE IS---" + e.getMessage());
             return null;
         }
         return path;

@@ -18,7 +18,8 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mHolder;
     private Camera mCamera;
     private OnSurfaceInfo mOnSurfaceInfo;
-    public static interface OnSurfaceInfo{
+
+    public static interface OnSurfaceInfo {
         void onSurfaceCreated();
 
     }
@@ -35,19 +36,17 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         mHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
     }
 
-    public void setOnSurfaceInfo(OnSurfaceInfo onSurfaceInfo){
-        this.mOnSurfaceInfo=onSurfaceInfo;
+    public void setOnSurfaceInfo(OnSurfaceInfo onSurfaceInfo) {
+        this.mOnSurfaceInfo = onSurfaceInfo;
     }
-
-
 
 
     public void surfaceCreated(SurfaceHolder holder) {
         Log.v("TAG", "=----SURFACE CREATED----");
         // The Surface has been created, now tell the camera where to draw the preview.
         try {
-            Camera.Parameters parameters=mCamera.getParameters();
-            if (mOnSurfaceInfo!=null){
+            Camera.Parameters parameters = mCamera.getParameters();
+            if (mOnSurfaceInfo != null) {
                 mOnSurfaceInfo.onSurfaceCreated();
             }
             mCamera.setPreviewDisplay(holder);
@@ -66,15 +65,14 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
         Log.v("TAG", "----surfaceDestroyed---mCamera is----" + mCamera);
         mCamera.setPreviewCallback(null);
         mCamera.release();
-        mCamera=null;
-        Log.v("TAG","-----====NULL mCamera is----"+mCamera);
-
+        mCamera = null;
+        Log.v("TAG", "-----====NULL mCamera is----" + mCamera);
 
 
         // empty. Take care of releasing the Camera preview in your activity.
     }
 
-    public void setPreviewCallback(Camera.PreviewCallback previewCallback){
+    public void setPreviewCallback(Camera.PreviewCallback previewCallback) {
 
         mCamera.setPreviewCallback(previewCallback);
     }
@@ -83,28 +81,29 @@ public class CameraView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder holder, int format, int w, int h) {
         // If your preview can change or rotate, take care of those events here.
         // Make sure to stop the preview before resizing or reformatting it.
-        Log.v("TAG","----surfaceChanged-----");
+        Log.v("TAG", "----surfaceChanged-----");
 
-        if (mHolder.getSurface() == null){
+        if (mHolder.getSurface() == null) {
             // preview surface does not exist
             return;
         }
 
     }
-    public void startPreview(){
-        if (mCamera== null) {
-            Log.v("TAG","---CAMERA==NULL RETURN-");
+
+    public void startPreview() {
+        if (mCamera == null) {
+            Log.v("TAG", "---CAMERA==NULL RETURN-");
             return;
-        }else {
+        } else {
             mCamera.startPreview();
         }
 
     }
 
-    public void stopPreview(){
-        if (mCamera==null) {
+    public void stopPreview() {
+        if (mCamera == null) {
             return;
-        }else {
+        } else {
             mCamera.stopPreview();
         }
     }
